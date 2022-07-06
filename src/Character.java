@@ -29,20 +29,7 @@ public class Character extends JLabel {
     }
 
 
-    void checkForBorderCollision(MainScene d){
 
-        int xLocation = this.getX();
-        //System.out.println(xLocation);
-
-        //checks for collision for the X axis
-        if(xLocation > d.getWidth() - (this.getWidth())){
-            this.setLocation(d.getWidth() - (this.getWidth()), this.getY());
-        }
-        if(xLocation < 0){
-            this.setLocation(0, this.getY());
-        }
-
-    }
 
    public void checkVanForReachHitboxCollision(Structure s){
 

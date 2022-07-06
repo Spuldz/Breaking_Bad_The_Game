@@ -43,5 +43,12 @@ public class CoinLabel extends JLabel {
         coinCountContainer.setText(this.coins + "");
     }
 
+    void payout(Inventory inventory){
+        for(int i = 0; i<inventory.methInInventory; i++){
+            addCoins(100);
+        }
+        inventory.clear();
+    }
+
 
 }

@@ -1,7 +1,6 @@
 
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Scenes extends JLabel {
     Heisenberg heisnberg;
@@ -29,6 +28,25 @@ public class Scenes extends JLabel {
 
     public CoinLabel getCoinLabel(){
         return coinLabel;
+    }
+
+    void checkForRightBorderCollision(Character c){
+
+        int xLocation = c.getX();
+
+        //checks for collision for the X axis
+        if(xLocation > this.getWidth() - (c.getWidth())){
+            c.setLocation(this.getWidth() - (c.getWidth()), c.getY());
+        }
+
+    }
+
+    void checkForLeftBorderCollision(Character c){
+        int xLocation = c.getX();
+
+        if(xLocation < 0){
+            c.setLocation(0, c.getY());
+        }
     }
 
 }

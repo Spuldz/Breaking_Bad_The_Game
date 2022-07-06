@@ -31,10 +31,6 @@ public class MainScene extends Scenes {
         van.setState(VAN);
 
 
-        gus.create(this, 100);
-        gus.setBackground(Color.GREEN);
-        gus.setOpaque(true);
-
         inventory.create(this);
 
         coinLabel.create();

@@ -46,9 +46,10 @@ public class Window extends JFrame implements KeyListener{
 
         //GAME LOOP
         while(true){
-            heisnberg.checkForBorderCollision(mainScene);
+            mainScene.checkForRightBorderCollision(heisnberg);
+            mainScene.checkForLeftBorderCollision(heisnberg);
+
             heisnberg.checkVanForReachHitboxCollision(van);
-            heisnberg.checkForGusReachHitboxCollision(gus);
             heisnberg.checkForReachHitboxDirection(mainScene);
 
         }
@@ -106,12 +107,10 @@ public class Window extends JFrame implements KeyListener{
                     van.cooking = true;
                 }
 
-                if(heisnberg.touchingGus){
-                    for(int i = 0; i<inventory.methInInventory; i++){
-                        coinLabel.addCoins(100);
-                    }
-                    inventory.clear();
-                }
+                //if(heisnberg.touchingGus){
+               //     coinLabel.payout(inventory);
+                //}
+
                 break;
             case 49:
                 inventory.checkForSelectedSlot(0);
