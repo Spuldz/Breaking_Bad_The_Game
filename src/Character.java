@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -31,7 +30,7 @@ public class Character extends JLabel {
 
 
 
-   public void checkVanForReachHitboxCollision(Structure s){
+    public void checkVanForReachHitboxCollision(Structure s){
 
         if(reachHitbox.getBounds().intersects(s.getBounds())){
             touchingVan = true;

@@ -1,5 +1,4 @@
 
-
 import javax.swing.*;
 
 public class Scenes extends JLabel {

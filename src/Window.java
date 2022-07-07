@@ -1,5 +1,4 @@
 
-
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -85,8 +84,8 @@ public class Window extends JFrame implements KeyListener{
 
         switch(e.getKeyCode()){
             case 65: heisnberg.setLocation(heisnberg.getX() -speed, heisnberg.getY());
-                     heisnberg.characterAction(HEISENBERG_WALKING_LEFT);
-                     reachHitbox.setLocation(reachHitbox.getX() - speed, reachHitbox.getY());
+                heisnberg.characterAction(HEISENBERG_WALKING_LEFT);
+                reachHitbox.setLocation(reachHitbox.getX() - speed, reachHitbox.getY());
                 break;
             case 68:
                 heisnberg.setLocation(heisnberg.getX() + speed, heisnberg.getY());
@@ -108,7 +107,7 @@ public class Window extends JFrame implements KeyListener{
                 }
 
                 //if(heisnberg.touchingGus){
-               //     coinLabel.payout(inventory);
+                //     coinLabel.payout(inventory);
                 //}
 
                 break;
