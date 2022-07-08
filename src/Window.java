@@ -11,7 +11,7 @@ public class Window extends JFrame implements KeyListener{
     JLabel reachHitbox;
     static MainScene mainScene;
     Inventory inventory;
-    CoinLabel coinLabel;
+    Coins coins;
     static Scenes scene2;
     static Scenes scene3;
     static Scenes scene4;
@@ -42,15 +42,15 @@ public class Window extends JFrame implements KeyListener{
     Window(){
 
         mainScene = new MainScene();
-        reachHitbox = Character.getReachHitbox();
-        heisnberg = mainScene.getHeisnberg();
-        gus = mainScene.getGus();
-        van = mainScene.getVan();
-        inventory = mainScene.getInventory();
-        coinLabel = mainScene.getCoinLabel();
         scene2 = new Scene2();
         scene3 = new Scene3();
         scene4 = new Scene4();
+        reachHitbox = Character.getReachHitbox();
+        heisnberg = mainScene.getHeisnberg();
+        gus = scene4.getGus();
+        van = mainScene.getVan();
+        inventory = mainScene.getInventory();
+        coins = mainScene.getCoinLabel();
         currentScene = mainScene;
 
 
@@ -66,9 +66,6 @@ public class Window extends JFrame implements KeyListener{
 
         //GAME LOOP
         while(true){
-
-
-
             scene2.checkForLeftBorderCollision(heisnberg);
             mainScene.checkForRightBorderCollision(heisnberg);
 
@@ -76,6 +73,7 @@ public class Window extends JFrame implements KeyListener{
 
             heisnberg.checkVanForReachHitboxCollision(van);
             heisnberg.checkForReachHitboxDirection(mainScene);
+            heisnberg.checkForGusReachHitboxCollision(gus);
         }
 
     }
@@ -131,9 +129,9 @@ public class Window extends JFrame implements KeyListener{
                     van.cooking = true;
                 }
 
-                //if(heisnberg.touchingGus){
-                //     coinLabel.payout(inventory);
-                //}
+                if(heisnberg.touchingGus){
+                     coins.payout(inventory);
+                }
 
                 break;
             case 49:
@@ -159,11 +157,12 @@ public class Window extends JFrame implements KeyListener{
             w.add(new_scene);
             new_scene.add(heisnberg);
             new_scene.add(inventory);
-            new_scene.add(coinLabel);
+            new_scene.add(coins);
             heisnberg.addReachHitbox(new_scene);
             heisnberg.create(new_scene, new_scene.getWidth() - heisnberg.getWidth());
-            coinLabel.create();
             new_scene.setVisible(true);
+
+
         }
 
         if (direction == "right") {
@@ -172,13 +171,13 @@ public class Window extends JFrame implements KeyListener{
             w.add(new_scene);
             new_scene.add(heisnberg);
             new_scene.add(inventory);
-            new_scene.add(coinLabel);
+            new_scene.add(coins);
             heisnberg.addReachHitbox(new_scene);
             heisnberg.create(new_scene, 0);
             new_scene.setComponentZOrder(heisnberg, 0);
             heisnberg.reachHitboxBringToFront(new_scene);
-            coinLabel.create();
             new_scene.setVisible(true);
+
         }
 
 

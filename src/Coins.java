@@ -3,15 +3,17 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class CoinLabel extends JLabel {
+public class Coins extends JLabel {
     Integer coins;
     ImageIcon coinImage;
     JLabel coinImageContainer;
     JLabel coinCountContainer;
+    Inventory inventory;
 
-    CoinLabel(int coins, ImageIcon coinImage){
+    Coins(int coins, ImageIcon coinImage){
         this.coins = coins;
         this.coinImage = coinImage;
+
     }
 
     void create(){
@@ -19,10 +21,11 @@ public class CoinLabel extends JLabel {
         this.setBackground(Color.YELLOW);
         this.setOpaque(true);
 
+        coinImage = new ImageIcon("Assets\\money_bag.png");
+
         coinImageContainer = new JLabel();
         coinImageContainer.setBounds(0, 0, 30, 30);
-        coinImageContainer.setBackground(Color.RED);
-        coinImageContainer.setOpaque(true);
+        coinImageContainer.setIcon(coinImage);
 
         coinCountContainer = new JLabel();
         coinCountContainer.setBounds(30,0, this.getWidth() - coinImageContainer.getWidth(), 30);
@@ -39,11 +42,12 @@ public class CoinLabel extends JLabel {
         updateCoins();
     }
 
-    private void updateCoins(){
+     void updateCoins(){
         coinCountContainer.setText(this.coins + "");
     }
 
     void payout(Inventory inventory){
+
         for(int i = 0; i<inventory.methInInventory; i++){
             addCoins(100);
         }

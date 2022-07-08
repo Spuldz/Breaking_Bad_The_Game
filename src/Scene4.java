@@ -9,6 +9,13 @@ public class Scene4 extends Scenes{
         this.setBounds(0, 0, 1000, 700);
         heisnberg.create(this, 100);
 
+
+        gus.create(this, 100);
+
+        this.add(gus);
         this.setVisible(false);
+
     }
+
+
 }

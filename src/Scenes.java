@@ -5,7 +5,7 @@ public class Scenes extends JLabel {
     Heisenberg heisnberg;
     Gus gus;
     Inventory inventory;
-    CoinLabel coinLabel;
+    Coins coinLabel;
     JLabel reachHitbox;
     Scenes scene2;
     Scenes mainScene;
@@ -15,9 +15,9 @@ public class Scenes extends JLabel {
 
     Scenes(){
         heisnberg = new Heisenberg();
-        inventory = new Inventory();
         gus = new Gus();
-        coinLabel = new CoinLabel(0, null);
+        inventory = new Inventory();
+        coinLabel = new Coins(0, null);
         reachHitbox = Character.getReachHitbox();
         scene2 = Window.getScene2();
         mainScene = Window.getMainScene();
@@ -35,7 +35,7 @@ public class Scenes extends JLabel {
         return gus;
     }
 
-    public CoinLabel getCoinLabel(){
+    public Coins getCoinLabel(){
         return coinLabel;
     }
 
@@ -56,6 +56,10 @@ public class Scenes extends JLabel {
             c.setLocation(0, c.getY());
         }
 
+
+    }
+
+    void changeScene(){
 
     }
 

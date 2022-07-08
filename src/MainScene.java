@@ -38,7 +38,6 @@ public class MainScene extends Scenes {
         this.add(heisnberg);
         this.add(van);
         this.add(inventory);
-        this.add(gus);
         this.add(coinLabel);
 
 
