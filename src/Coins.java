@@ -18,8 +18,6 @@ public class Coins extends JLabel {
 
     void create(){
         this.setBounds(0,0, 150, 30);
-        this.setBackground(Color.YELLOW);
-        this.setOpaque(true);
 
         coinImage = new ImageIcon("Assets\\money_bag.png");
 
@@ -29,8 +27,7 @@ public class Coins extends JLabel {
 
         coinCountContainer = new JLabel();
         coinCountContainer.setBounds(30,0, this.getWidth() - coinImageContainer.getWidth(), 30);
-        coinCountContainer.setBackground(Color.GREEN);
-        coinCountContainer.setOpaque(true);
+
         updateCoins();
 
         this.add(coinImageContainer);
