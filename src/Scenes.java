@@ -6,12 +6,22 @@ public class Scenes extends JLabel {
     Gus gus;
     Inventory inventory;
     CoinLabel coinLabel;
+    JLabel reachHitbox;
+    Scenes scene2;
+    Scenes mainScene;
+    Scenes currentScene;
+    int width = 1000;
+    int height = 700;
 
     Scenes(){
         heisnberg = new Heisenberg();
         inventory = new Inventory();
         gus = new Gus();
         coinLabel = new CoinLabel(0, null);
+        reachHitbox = Character.getReachHitbox();
+        scene2 = Window.getScene2();
+        mainScene = Window.getMainScene();
+        currentScene = Window.getCurrentScene();
     }
 
     public Inventory getInventory(){
@@ -33,7 +43,6 @@ public class Scenes extends JLabel {
 
         int xLocation = c.getX();
 
-        //checks for collision for the X axis
         if(xLocation > this.getWidth() - (c.getWidth())){
             c.setLocation(this.getWidth() - (c.getWidth()), c.getY());
         }
@@ -46,6 +55,14 @@ public class Scenes extends JLabel {
         if(xLocation < 0){
             c.setLocation(0, c.getY());
         }
+
+
     }
+
+
+
+
+
+
 
 }

@@ -13,9 +13,8 @@ public class Inventory extends JLabel {
     int slotsFree;
     int methInInventory;
 
-    void create(MainScene display){
+    void create(Scenes display){
         this.setBounds((display.getWidth() / 2) - (70), this.getHeight(), 200, 50 );
-        this.setOpaque(true);
         GridLayout layout = new GridLayout(1, 4);
         layout.setVgap(1);
         layout.setHgap(1);

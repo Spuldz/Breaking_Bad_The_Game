@@ -9,9 +9,13 @@ public class Window extends JFrame implements KeyListener{
     Gus gus;
     Van van;
     JLabel reachHitbox;
-    MainScene mainScene;
+    static MainScene mainScene;
     Inventory inventory;
     CoinLabel coinLabel;
+    static Scenes scene2;
+    static Scenes scene3;
+    static Scenes scene4;
+    static Scenes currentScene;
 
     final String HEISENBERG_STANDING_RIGHT = "Assets\\heisenberg_standing_right.png";
     final String HEISENBERG_STANDING_LEFT = "Assets\\heisenberg_standing_left.png";
@@ -20,7 +24,20 @@ public class Window extends JFrame implements KeyListener{
     final String VAN = "Assets\\van.png";
     final String VAN_COOKING = "Assets\\van_cooking.png";
     final String METH = "Assets\\meth.png";
+    String t = "Main";
 
+
+    public static Scenes getScene2(){
+        return scene2;
+    }
+
+    public static Scenes getMainScene(){
+        return mainScene;
+    }
+
+    public static Scenes getCurrentScene(){
+        return currentScene;
+    }
 
     Window(){
 
@@ -31,6 +48,10 @@ public class Window extends JFrame implements KeyListener{
         van = mainScene.getVan();
         inventory = mainScene.getInventory();
         coinLabel = mainScene.getCoinLabel();
+        scene2 = new Scene2();
+        scene3 = new Scene3();
+        scene4 = new Scene4();
+        currentScene = mainScene;
 
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,12 +66,16 @@ public class Window extends JFrame implements KeyListener{
 
         //GAME LOOP
         while(true){
+
+
+
+            scene2.checkForLeftBorderCollision(heisnberg);
             mainScene.checkForRightBorderCollision(heisnberg);
-            mainScene.checkForLeftBorderCollision(heisnberg);
+
+            checkForCurrentScene(heisnberg, this);
 
             heisnberg.checkVanForReachHitboxCollision(van);
             heisnberg.checkForReachHitboxDirection(mainScene);
-
         }
 
     }
@@ -125,8 +150,90 @@ public class Window extends JFrame implements KeyListener{
                 break;
         }
 
+    }
+
+    void changeScene(Scenes current_scene, Scenes new_scene, Window w, String direction){
+        if(direction == "left"){
+            heisnberg.removeReachHitbox(current_scene);
+            w.remove(current_scene);
+            w.add(new_scene);
+            new_scene.add(heisnberg);
+            new_scene.add(inventory);
+            new_scene.add(coinLabel);
+            heisnberg.addReachHitbox(new_scene);
+            heisnberg.create(new_scene, new_scene.getWidth() - heisnberg.getWidth());
+            coinLabel.create();
+            new_scene.setVisible(true);
+        }
+
+        if (direction == "right") {
+            heisnberg.removeReachHitbox(current_scene);
+            w.remove(current_scene);
+            w.add(new_scene);
+            new_scene.add(heisnberg);
+            new_scene.add(inventory);
+            new_scene.add(coinLabel);
+            heisnberg.addReachHitbox(new_scene);
+            heisnberg.create(new_scene, 0);
+            new_scene.setComponentZOrder(heisnberg, 0);
+            heisnberg.reachHitboxBringToFront(new_scene);
+            coinLabel.create();
+            new_scene.setVisible(true);
+        }
 
 
     }
+
+    void checkForCurrentScene(Character c, Window w){
+        System.out.println();
+        int xLocation = c.getX();
+        if(xLocation < 0 && currentScene == mainScene){
+            changeScene(currentScene, scene2, w, "left");
+            currentScene.setVisible(false);
+            currentScene = scene2;
+            return;
+        }
+
+        if(xLocation < 0 && currentScene == scene2){
+            changeScene(currentScene, scene3, w, "left");
+            currentScene.setVisible(false);
+            currentScene = scene3;
+            return;
+        }
+
+        if(xLocation < 0 && currentScene == scene3){
+            changeScene(currentScene, scene4, w, "left");
+            currentScene.setVisible(false);
+            currentScene = scene4;
+            return;
+        }
+
+
+        if(xLocation > scene4.getWidth() - (c.getWidth()) && currentScene == scene4){
+            changeScene(currentScene, scene3, w, "right");
+            currentScene.setVisible(false);
+            currentScene = scene3;
+            return;
+        }
+
+        if(xLocation > scene3.getWidth() - (c.getWidth()) && currentScene == scene3){
+            changeScene(currentScene, scene2, w, "right");
+            currentScene.setVisible(false);
+            currentScene = scene2;
+            return;
+        }
+
+        if(xLocation > scene2.getWidth() - (c.getWidth()) && currentScene == scene2){
+            changeScene(currentScene, mainScene, w, "right");
+            currentScene.setVisible(false);
+            currentScene = mainScene;
+            return;
+        }
+
+
+    }
+
+
+
 
 }

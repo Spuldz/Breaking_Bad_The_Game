@@ -49,7 +49,7 @@ public class Character extends JLabel {
         }
     }
 
-    void addReachHitbox(MainScene d){
+       void addReachHitbox(Scenes d){
         reachHitbox = new JLabel();
         reachHitbox.setBackground(Color.BLUE);
         reachHitbox.setOpaque(true);
@@ -57,6 +57,15 @@ public class Character extends JLabel {
 
         d.add(reachHitbox);
 
+
+    }
+
+    void removeReachHitbox(Scenes s){
+        s.remove(reachHitbox);
+    }
+
+    void reachHitboxBringToFront(Scenes s){
+        s.setComponentZOrder(reachHitbox, 0);
     }
 
     public static JLabel getReachHitbox(){
