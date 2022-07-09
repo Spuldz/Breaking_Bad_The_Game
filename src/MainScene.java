@@ -4,7 +4,7 @@ import java.awt.*;
 public class MainScene extends Scenes {
 
     ImageIcon Desert;
-    Van van;
+
     final String HEISENBERG_STANDING_RIGHT = "Assets\\heisenberg_standing_right.png";
     final String VAN = "Assets\\van.png";
     final String VAN_COOKING = "Assets\\van_cooking.png";
@@ -24,7 +24,6 @@ public class MainScene extends Scenes {
         heisnberg.characterAction(HEISENBERG_STANDING_RIGHT);
         heisnberg.addReachHitbox(this);
 
-        van = new Van();
         van.create(this, 600, 287, 227);
         van.setState(VAN);
 
@@ -45,9 +44,6 @@ public class MainScene extends Scenes {
     }
 
 
-    public Van getVan(){
-        return van;
-    }
 
 
 

@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,7 +8,7 @@ public class Window extends JFrame implements KeyListener{
     Gus gus;
     Van van;
     JLabel reachHitbox;
-    static MainScene mainScene;
+    static Scenes mainScene;
     Inventory inventory;
     Coins coins;
     static Scenes scene2;
@@ -31,9 +30,7 @@ public class Window extends JFrame implements KeyListener{
         return scene2;
     }
 
-    public static Scenes getMainScene(){
-        return mainScene;
-    }
+
 
     public static Scenes getCurrentScene(){
         return currentScene;
@@ -78,6 +75,10 @@ public class Window extends JFrame implements KeyListener{
 
     }
 
+    public static Scenes getMainScene(){
+        return mainScene;
+    }
+
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -117,20 +118,21 @@ public class Window extends JFrame implements KeyListener{
                 break;
             case 69:
 
-                if(van.cooking && heisnberg.touchingVan){
-                    van.cooking = false;
-                    van.setState(VAN);
+                if(van.cooked && heisnberg.touchingVan){
+                    van.cooked = false;
                     inventory.addItem(METH);
+                    van.stopCooking();
+                    van.setState(VAN);
                     return;
                 }
 
                 if (heisnberg.touchingVan) {
-                    van.setState(VAN_COOKING);
-                    van.cooking = true;
+                    this.add(van.timerLabel);
+                    van.startCooking();
                 }
 
                 if(heisnberg.touchingGus){
-                     coins.payout(inventory);
+                    coins.payout(inventory);
                 }
 
                 break;
@@ -184,7 +186,7 @@ public class Window extends JFrame implements KeyListener{
     }
 
     void checkForCurrentScene(Character c, Window w){
-        System.out.println();
+       // System.out.println();
         int xLocation = c.getX();
         if(xLocation < 0 && currentScene == mainScene){
             changeScene(currentScene, scene2, w, "left");

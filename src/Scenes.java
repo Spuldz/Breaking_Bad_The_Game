@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 
 public class Scenes extends JLabel {
@@ -12,6 +11,7 @@ public class Scenes extends JLabel {
     Scenes currentScene;
     int width = 1000;
     int height = 700;
+    Van van;
 
     Scenes(){
         heisnberg = new Heisenberg();
@@ -20,8 +20,7 @@ public class Scenes extends JLabel {
         coinLabel = new Coins(0, null);
         reachHitbox = Character.getReachHitbox();
         scene2 = Window.getScene2();
-        mainScene = Window.getMainScene();
-        currentScene = Window.getCurrentScene();
+        van = new Van();
     }
 
     public Inventory getInventory(){
@@ -64,9 +63,7 @@ public class Scenes extends JLabel {
     }
 
 
-
-
-
-
-
+    public Van getVan() {
+        return van;
+    }
 }

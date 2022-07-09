@@ -72,7 +72,7 @@ public class Character extends JLabel {
         return reachHitbox;
     }
 
-    void checkForReachHitboxDirection(MainScene d){
+    void checkForReachHitboxDirection(Scenes d){
         int x = this.getX();
         int y = this.getY();
 
